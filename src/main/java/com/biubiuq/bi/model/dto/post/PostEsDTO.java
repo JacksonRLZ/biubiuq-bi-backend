@@ -3,10 +3,6 @@ package com.biubiuq.bi.model.dto.post;
 import com.biubiuq.bi.model.entity.Post;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import lombok.Data;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -15,11 +11,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
 /**
  * 帖子 ES 包装类
- *
- *
- * 
  **/
 // todo 取消注释开启 ES（须先配置 ES）
 //@Document(indexName = "post")
@@ -27,63 +24,51 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 public class PostEsDTO implements Serializable {
 
     private static final String DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-
+    private static final long serialVersionUID = 1L;
+    private static final Gson GSON = new Gson();
     /**
      * id
      */
     @Id
     private Long id;
-
     /**
      * 标题
      */
     private String title;
-
     /**
      * 内容
      */
     private String content;
-
     /**
      * 标签列表
      */
     private List<String> tags;
-
     /**
      * 点赞数
      */
     private Integer thumbNum;
-
     /**
      * 收藏数
      */
     private Integer favourNum;
-
     /**
      * 创建用户 id
      */
     private Long userId;
-
     /**
      * 创建时间
      */
     @Field(index = false, store = true, type = FieldType.Date, format = {}, pattern = DATE_TIME_PATTERN)
     private Date createTime;
-
     /**
      * 更新时间
      */
     @Field(index = false, store = true, type = FieldType.Date, format = {}, pattern = DATE_TIME_PATTERN)
     private Date updateTime;
-
     /**
      * 是否删除
      */
     private Integer isDelete;
-
-    private static final long serialVersionUID = 1L;
-
-    private static final Gson GSON = new Gson();
 
     /**
      * 对象转包装类

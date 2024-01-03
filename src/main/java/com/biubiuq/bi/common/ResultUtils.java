@@ -2,9 +2,6 @@ package com.biubiuq.bi.common;
 
 /**
  * 返回工具类
- *
- *
- * 
  */
 public class ResultUtils {
 

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.biubiuq.bi.common.ErrorCode;
+import com.biubiuq.bi.constant.CommonConstant;
 import com.biubiuq.bi.exception.BusinessException;
 import com.biubiuq.bi.exception.ThrowUtils;
 import com.biubiuq.bi.mapper.PostFavourMapper;
@@ -21,16 +22,6 @@ import com.biubiuq.bi.service.PostService;
 import com.biubiuq.bi.service.UserService;
 import com.biubiuq.bi.utils.SqlUtils;
 import com.google.gson.Gson;
-import com.biubiuq.bi.constant.CommonConstant;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
@@ -48,11 +39,13 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * 帖子服务实现
- *
- *
- * 
  */
 @Service
 @Slf4j

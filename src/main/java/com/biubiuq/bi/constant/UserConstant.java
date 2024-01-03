@@ -2,9 +2,6 @@ package com.biubiuq.bi.constant;
 
 /**
  * 用户常量
- *
- *
- * 
  */
 public interface UserConstant {
 

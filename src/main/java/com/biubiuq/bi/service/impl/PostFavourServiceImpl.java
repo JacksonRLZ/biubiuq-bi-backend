@@ -13,17 +13,14 @@ import com.biubiuq.bi.model.entity.PostFavour;
 import com.biubiuq.bi.model.entity.User;
 import com.biubiuq.bi.service.PostFavourService;
 import com.biubiuq.bi.service.PostService;
-
-import javax.annotation.Resource;
 import org.springframework.aop.framework.AopContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * 帖子收藏服务实现
- *
- *
- * 
  */
 @Service
 public class PostFavourServiceImpl extends ServiceImpl<PostFavourMapper, PostFavour>

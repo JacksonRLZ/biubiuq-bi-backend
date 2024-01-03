@@ -87,12 +87,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (StringUtils.isAnyBlank(userAccount, userPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
         }
+
         if (userAccount.length() < 4) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号错误");
         }
+
         if (userPassword.length() < 8) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "密码错误");
         }
+
         // 2. 加密
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
         // 查询用户是否存在
@@ -127,8 +130,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             // 用户不存在则创建
             if (user == null) {
                 user = new User();
-                user.setUnionId(unionId);
-                user.setMpOpenId(mpOpenId);
+//                user.setUnionId(unionId);
+//                user.setMpOpenId(mpOpenId);
                 user.setUserAvatar(wxOAuth2UserInfo.getHeadImgUrl());
                 user.setUserName(wxOAuth2UserInfo.getNickname());
                 boolean result = this.save(user);
@@ -227,6 +230,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (user == null) {
             return null;
         }
+
         LoginUserVO loginUserVO = new LoginUserVO();
         BeanUtils.copyProperties(user, loginUserVO);
         return loginUserVO;
