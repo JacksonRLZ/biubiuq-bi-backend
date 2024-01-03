@@ -6,8 +6,6 @@ import com.biubiuq.bi.exception.BusinessException;
 import com.biubiuq.bi.model.entity.User;
 import com.biubiuq.bi.model.enums.UserRoleEnum;
 import com.biubiuq.bi.service.UserService;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,11 +15,11 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 权限校验 AOP
- *
- *
- * 
  */
 @Aspect
 @Component
@@ -50,11 +48,13 @@ public class AuthInterceptor {
             if (mustUserRoleEnum == null) {
                 throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
             }
+
             String userRole = loginUser.getUserRole();
             // 如果被封号，直接拒绝
             if (UserRoleEnum.BAN.equals(mustUserRoleEnum)) {
                 throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
             }
+
             // 必须有管理员权限
             if (UserRoleEnum.ADMIN.equals(mustUserRoleEnum)) {
                 if (!mustRole.equals(userRole)) {
